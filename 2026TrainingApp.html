@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ultra Training Companion</title>
-    <!-- Tailwind CSS -->
+    <title>Ultra Training Companion v2</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- React & DOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <!-- Babel -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
     <style>
@@ -40,7 +37,6 @@
         const RefreshCw = () => <Icon><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></Icon>;
         const FileUp = () => <Icon><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 12v6"/><path d="m9 15 3-3 3 3"/></Icon>;
         const Download = () => <Icon><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></Icon>;
-        const Dumbbell = () => <Icon><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></Icon>;
 
         // --- DEFAULT TEMPLATE (If no data found) ---
         const EMPTY_PLAN = [
@@ -75,6 +71,21 @@
                 localStorage.setItem('ultraPlan_universal', JSON.stringify(weeks));
             }, [weeks]);
 
+            // --- FIXED: AUTO-DETECT CURRENT WEEK ---
+            // This effect runs whenever 'weeks' changes (load, import, or update).
+            // It finds the first 'pending' week and sets it as active.
+            useEffect(() => {
+                if (weeks && weeks.length > 0) {
+                    const firstPendingIndex = weeks.findIndex(w => w.status === 'pending');
+                    if (firstPendingIndex !== -1) {
+                        setCurrentWeekIndex(firstPendingIndex);
+                    } else {
+                        // If all are completed, show the last week
+                        setCurrentWeekIndex(weeks.length - 1);
+                    }
+                }
+            }, [weeks]);
+
             // --- ACTIONS ---
 
             const handleSaveLog = () => {
@@ -96,11 +107,6 @@
 
                 setWeeks(newWeeks);
                 setIsEditMode(false);
-                
-                // Auto-advance current week if completing the active one
-                if (selectedWeek === currentWeekIndex && currentWeekIndex < weeks.length - 1) {
-                    setCurrentWeekIndex(currentWeekIndex + 1);
-                }
             };
 
             const handleImportPlan = () => {
@@ -111,7 +117,8 @@
 
                     if (window.confirm(`Found plan with ${parsed.length} weeks. This will overwrite your current schedule. Proceed?`)) {
                         setWeeks(parsed);
-                        setCurrentWeekIndex(0); // Reset to start
+                        // Removed the manual reset to 0 here. 
+                        // The useEffect above will handle setting the correct week.
                         setIsImportMode(false);
                         setImportText('');
                     }
@@ -206,7 +213,7 @@
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
                         <div>
                             <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
-                                <Activity /> Ultra Companion
+                                <Activity /> Ultra Companion v2.0
                             </h1>
                             <p className="text-slate-500 text-sm">Fernando Moitinho | Finish under Cutoff</p>
                         </div>
