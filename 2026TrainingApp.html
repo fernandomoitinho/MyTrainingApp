@@ -49,9 +49,57 @@
         const FileUp = () => <Icon><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 12v6"/><path d="m9 15 3-3 3 3"/></Icon>;
         const Download = () => <Icon><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></Icon>;
 
-        // --- DEFAULT TEMPLATE (If no data found) ---
+        // --- DEFAULT PLAN (Fernando Moitinho — 2025/2026 Season) ---
         const EMPTY_PLAN = [
-            { week: 1, dates: "Week 1", phase: "Intro", vol: 30, vert: 0, focus: "Setup", strength: "Mobility", type: "Base", status: "pending" }
+          { week: 1,  dates: "Dec 29-Jan 4",   phase: "Strength Base",   vol: 30,  vert: 500,  focus: "Adaptation (Clamshells)",          type: "Base",     status: "Completed" },
+          { week: 2,  dates: "Jan 5-11",        phase: "Strength Base",   vol: 35,  vert: 800,  focus: "Hypertrophy (Legs)",               type: "Base",     status: "Completed" },
+          { week: 3,  dates: "Jan 12-18",       phase: "Strength Base",   vol: 30,  vert: 400,  focus: "RECOVERY (Flush Legs)",            type: "Recovery", status: "Partial"   },
+          { week: 4,  dates: "Jan 19-25",       phase: "Strength Base",   vol: 40,  vert: 600,  focus: "Isometrics (No Impact)",           type: "Base",     status: "Partial"   },
+          { week: 5,  dates: "Jan 26-Feb 1",    phase: "Strength Base",   vol: 35,  vert: 400,  focus: "Heavy Strength (Squats)",          type: "Base",     status: "Partial"   },
+          { week: 6,  dates: "Feb 2-8",         phase: "Strength Base",   vol: 40,  vert: 600,  focus: "Heavy Strength (Deadlifts)",       type: "Base",     status: "Partial",  actualVol: 48, actualVert: 500,  notes: "",                                                        difficulty: 2 },
+          { week: 7,  dates: "Feb 9-15",        phase: "Build",           vol: 45,  vert: 1000, focus: "Louzan Vert Prep",                 type: "Build",    status: "Partial",  actualVol: 55, actualVert: 350,  notes: "Hard to get logistics to do hill training ascent",         difficulty: 3 },
+          { week: 8,  dates: "Feb 16-22",       phase: "Build",           vol: 50,  vert: 1200, focus: "Technical Descent Work",           type: "Build",    status: "Partial",  actualVol: 48, actualVert: 400,  notes: "",                                                        difficulty: 3 },
+          { week: 9,  dates: "Feb 23-Mar 1",    phase: "Taper",           vol: 30,  vert: 400,  focus: "Race Taper",                       type: "Taper",    status: "Partial",  actualVol: 48, actualVert: 300,  notes: "",                                                        difficulty: 3 },
+          { week: 10, dates: "Mar 2-8",         phase: "Race Week",       vol: 32,  vert: 2000, focus: "LOUZANTRAIL 32K",                  type: "Race",     status: "Partial",  actualVol: 53, actualVert: 558,  notes: "The race was canceled",                                   difficulty: 3 },
+          { week: 11, dates: "Mar 9-15",        phase: "Recovery",        vol: 25,  vert: 0,    focus: "Active Flush / Mobility",          type: "Recovery", status: "Completed",actualVol: 50, actualVert: 329,  notes: "Very soreness on the weekend after Friday lunges day",    difficulty: 3 },
+          { week: 12, dates: "Mar 16-22",       phase: "Build",           vol: 50,  vert: 500,  focus: "Aerobic Base (Flat)",              type: "Build",    status: "Completed",actualVol: 64, actualVert: 500,  notes: "",                                                        difficulty: 3 },
+          { week: 13, dates: "Mar 23-29",       phase: "Build",           vol: 60,  vert: 600,  focus: "Endurance (Seixal)",               type: "Build",    status: "Partial",  actualVol: 54, actualVert: 600,  notes: "",                                                        difficulty: 3 },
+          { week: 14, dates: "Mar 30-Apr 5",    phase: "Taper",           vol: 40,  vert: 300,  focus: "Marathon Taper",                   type: "Taper",    status: "Completed",actualVol: 66, actualVert: 576,  notes: "",                                                        difficulty: 3 },
+          { week: 15, dates: "Apr 6-12",        phase: "Tejo Peak",       vol: 95,  vert: 1000, focus: "Long Weekend Back-to-Back",        type: "Peak",     status: "pending"   },
+          { week: 16, dates: "Apr 13-19",       phase: "Recovery",        vol: 40,  vert: 200,  focus: "Family/Recovery Week",             type: "Recovery", status: "pending"   },
+          { week: 17, dates: "Apr 20-26",       phase: "Ficalho Prep",    vol: 80,  vert: 400,  focus: "Night Run / Laps practice",        type: "Peak",     status: "pending"   },
+          { week: 18, dates: "Apr 27-May 3",    phase: "Taper",           vol: 40,  vert: 300,  focus: "Backyard Taper",                   type: "Taper",    status: "pending"   },
+          { week: 19, dates: "May 4-10",        phase: "Race Week",       vol: 80,  vert: 500,  focus: "BACKYARD DE FICALHO (May 9)",      type: "Race",     status: "pending"   },
+          { week: 20, dates: "May 11-17",       phase: "Recovery",        vol: 20,  vert: 0,    focus: "Deep Recovery",                    type: "Recovery", status: "pending"   },
+          { week: 21, dates: "May 18-24",       phase: "Taper",           vol: 50,  vert: 200,  focus: "Tejo Re-engage / Flat Endurance",  type: "Taper",    status: "pending"   },
+          { week: 22, dates: "May 25-31",       phase: "Taper",           vol: 30,  vert: 100,  focus: "Gear Check",                       type: "Taper",    status: "pending"   },
+          { week: 23, dates: "Jun 1-7",         phase: "A-RACE",          vol: 150, vert: 1500, focus: "CAMINHOS DO TEJO (Jun 5)",         type: "Race_A",   status: "pending"   },
+          { week: 24, dates: "Jun 8-14",        phase: "Recovery",        vol: 0,   vert: 0,    focus: "Total Rest (Walk Only)",           type: "Recovery", status: "pending"   },
+          { week: 25, dates: "Jun 15-21",       phase: "Recovery",        vol: 30,  vert: 0,    focus: "Active Recovery (Bike)",           type: "Recovery", status: "pending"   },
+          { week: 26, dates: "Jun 22-28",       phase: "Vert Intro",      vol: 31,  vert: 1800, focus: "UTSF AROUCA (Fun)",                type: "Race",     status: "pending"   },
+          { week: 27, dates: "Jun 29-Jul 5",    phase: "Vert Build",      vol: 50,  vert: 1000, focus: "Hiking with Poles",                type: "Build",    status: "pending"   },
+          { week: 28, dates: "Jul 6-12",        phase: "Vert Build",      vol: 60,  vert: 1500, focus: "Arrábida Repeats",                 type: "Build",    status: "pending"   },
+          { week: 29, dates: "Jul 13-19",       phase: "Vert Build",      vol: 70,  vert: 2000, focus: "Heavy Leg Strength",               type: "Build",    status: "pending"   },
+          { week: 30, dates: "Jul 20-26",       phase: "Recovery",        vol: 40,  vert: 500,  focus: "Family Holiday Week",              type: "Recovery", status: "pending"   },
+          { week: 31, dates: "Jul 27-Aug 2",    phase: "Vert Build",      vol: 70,  vert: 2000, focus: "Downhill Technique",               type: "Build",    status: "pending"   },
+          { week: 32, dates: "Aug 3-9",         phase: "Estrela Peak",    vol: 80,  vert: 2500, focus: "Long Mtn Day (6h)",                type: "Peak",     status: "pending"   },
+          { week: 33, dates: "Aug 10-16",       phase: "Estrela Peak",    vol: 90,  vert: 3000, focus: "Super Vert Week",                  type: "Peak",     status: "pending"   },
+          { week: 34, dates: "Aug 17-23",       phase: "Recovery",        vol: 50,  vert: 1000, focus: "Alice Bday (23rd)",                type: "Recovery", status: "pending"   },
+          { week: 35, dates: "Aug 24-30",       phase: "Estrela Peak",    vol: 95,  vert: 3500, focus: "Final Endurance Push",             type: "Peak",     status: "pending"   },
+          { week: 36, dates: "Aug 31-Sep 6",    phase: "Taper",           vol: 65,  vert: 1500, focus: "Start Taper",                      type: "Taper",    status: "pending"   },
+          { week: 37, dates: "Sep 7-13",        phase: "Taper",           vol: 50,  vert: 1000, focus: "Intervals / Activation",           type: "Taper",    status: "pending"   },
+          { week: 38, dates: "Sep 14-20",       phase: "Taper",           vol: 40,  vert: 500,  focus: "Short Trail",                      type: "Taper",    status: "pending"   },
+          { week: 39, dates: "Sep 21-27",       phase: "Taper",           vol: 30,  vert: 200,  focus: "Rest / Carb Load",                 type: "Taper",    status: "pending"   },
+          { week: 40, dates: "Sep 28-Oct 4",    phase: "A-RACE",          vol: 100, vert: 6000, focus: "ESTRELAÇOR (100k)",                type: "Race_A",   status: "pending"   },
+          { week: 41, dates: "Oct 5-11",        phase: "Recovery",        vol: 0,   vert: 0,    focus: "Total Rest / Massage",             type: "Recovery", status: "pending"   },
+          { week: 42, dates: "Oct 12-18",       phase: "Recovery",        vol: 30,  vert: 0,    focus: "Guilherme Bday (14th)",            type: "Recovery", status: "pending"   },
+          { week: 43, dates: "Oct 19-25",       phase: "Quad Strength",   vol: 50,  vert: 500,  focus: "Road Return",                      type: "Build",    status: "pending"   },
+          { week: 44, dates: "Oct 26-Nov 1",    phase: "Quad Strength",   vol: 60,  vert: 500,  focus: "Eccentric Tempo",                  type: "Build",    status: "pending"   },
+          { week: 45, dates: "Nov 2-8",         phase: "Race Week",       vol: 42,  vert: 100,  focus: "PORTO MARATHON",                   type: "Race",     status: "pending"   },
+          { week: 46, dates: "Nov 9-15",        phase: "Quad Strength",   vol: 80,  vert: 1000, focus: "Quad Killer (Downhill)",           type: "Peak",     status: "pending"   },
+          { week: 47, dates: "Nov 16-22",       phase: "Taper",           vol: 40,  vert: 500,  focus: "Taper",                            type: "Taper",    status: "pending"   },
+          { week: 48, dates: "Nov 23-29",       phase: "A-RACE",          vol: 90,  vert: 3300, focus: "GERÊS EXTREME",                    type: "Race_A",   status: "pending"   },
+          { week: 49, dates: "Nov 30-Dec 31",   phase: "Off Season",      vol: 0,   vert: 0,    focus: "Winter Rest / Holidays",           type: "Recovery", status: "pending"   }
         ];
 
         const Card = ({ children, className = "" }) => (
